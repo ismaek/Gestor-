@@ -1,0 +1,1247 @@
+<?php
+
+namespace Padel\AmigoBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Club
+ *
+ * @ORM\Table(name="fos_club")
+ * @ORM\Entity
+ */
+class Club extends BaseUser
+{
+    /**
+     * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     * @ORM\Column(name="nif", type="string", length=10, nullable=false)
+     */
+    protected $nif;
+
+    /**
+     * @var string
+     * @ORM\Column(name="mobilePhone", type="string", length=64, nullable=true)
+     */
+    protected $mobilePhone;
+
+    /**
+     * @var string
+     * @ORM\Column(name="fax", type="string", length=64, nullable=true)
+     */
+    protected $fax;
+
+    /**
+     * @var string
+     * @ORM\Column(name="category", type="string", length=255, nullable=true)
+     */
+    protected $category;
+
+    /**
+     * @var string
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    protected $image;
+
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Location")
+     * @ORM\JoinColumn(onDelete="set null")
+     */
+    protected $location;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="tieneTienda", type="boolean", options={"default":0})
+     */
+    protected $tieneTienda;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="tieneBar", type="boolean", options={"default":0})
+     */
+    protected $tieneBar;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="tieneVentamaterial", type="boolean", options={"default":0})
+     */
+    protected $tieneVentamaterial;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="tieneBebidas", type="boolean", options={"default":0})
+     */
+    protected $tieneBebidas;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="tieneAlquiler", type="boolean", options={"default":0})
+     */
+    protected $tieneAlquiler;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="tieneParking", type="boolean", options={"default":0})
+     */
+    protected $tieneParking;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="tieneVestuarios", type="boolean", options={"default":0})
+     */
+    protected $tieneVestuarios;
+   
+    
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="lunesHoraIniM", type="time")
+     */
+    protected $lunesHoraIniM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="lunesHoraFinM", type="time")
+     */
+    protected $lunesHoraFinM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="lunesHoraIniT", type="time")
+     */
+    protected $lunesHoraIniT;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="lunesHoraFinT", type="time")
+     */
+    protected $lunesHoraFinT;
+  
+    
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="martesHoraIniM", type="time")
+     */
+    protected $martesHoraIniM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="martesHoraFinM", type="time")
+     */
+    protected $martesHoraFinM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="martesHoraIniT", type="time")
+     */
+    protected $martesHoraIniT;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="martesHoraFinT", type="time")
+     */
+    protected $martesHoraFinT;
+    
+    
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="miercolesHoraIniM", type="time")
+     */
+    protected $miercolesHoraIniM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="miercolesHoraFinM", type="time")
+     */
+    protected $miercolesHoraFinM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="miercolesHoraIniT", type="time")
+     */
+    protected $miercolesHoraIniT;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="miercolesHoraFinT", type="time")
+     */
+    protected $miercolesHoraFinT;
+    
+    
+    
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="juevesHoraIniM", type="time")
+     */
+    protected $juevesHoraIniM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="juevesHoraFinM", type="time")
+     */
+    protected $juevesHoraFinM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="juevesHoraIniT", type="time")
+     */
+    protected $juevesHoraIniT;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="juevesHoraFinT", type="time")
+     */
+    protected $juevesHoraFinT;
+    
+    
+    
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="viernesHoraIniM", type="time")
+     */
+    protected $viernesHoraIniM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="viernesHoraFinM", type="time")
+     */
+    protected $viernesHoraFinM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="viernesHoraIniT", type="time")
+     */
+    protected $viernesHoraIniT;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="viernesHoraFinT", type="time")
+     */
+    protected $viernesHoraFinT;
+    
+
+    
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="sabadoHoraIniM", type="time")
+     */
+    protected $sabadoHoraIniM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="sabadoHoraFinM", type="time")
+     */
+    protected $sabadoHoraFinM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="sabadoHoraIniT", type="time")
+     */
+    protected $sabadoHoraIniT;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="sabadoHoraFinT", type="time")
+     */
+    protected $sabadoHoraFinT;
+    
+    
+    
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="domingoHoraIniM", type="time")
+     */
+    protected $domingoHoraIniM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="domingoHoraFinM", type="time")
+     */
+    protected $domingoHoraFinM;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="domingoHoraIniT", type="time")
+     */
+    protected $domingoHoraIniT;
+    
+    /**
+     * @var DateTime
+     * @ORM\Column(name="domingoHoraFinT", type="time")
+     */
+    protected $domingoHoraFinT;
+    
+
+       
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nif
+     *
+     * @param string $nif
+     * @return Club
+     */
+    public function setNif($nif)
+    {
+        $this->nif = $nif;
+
+        return $this;
+    }
+
+    /**
+     * Get nif
+     *
+     * @return string 
+     */
+    public function getNif()
+    {
+        return $this->nif;
+    }
+
+
+    /**
+     * Set mobilePhone
+     *
+     * @param string $mobilePhone
+     * @return Club
+     */
+    public function setMobilePhone($mobilePhone)
+    {
+        $this->mobilePhone = $mobilePhone;
+
+        return $this;
+    }
+
+    /**
+     * Get mobilePhone
+     *
+     * @return string 
+     */
+    public function getMobilePhone()
+    {
+        return $this->mobilePhone;
+    }
+
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     * @return Club
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get fax
+     *
+     * @return string 
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     * @return Club
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Club
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set tieneTienda
+     *
+     * @param boolean $tieneTienda
+     * @return Club
+     */
+    public function setTieneTienda($tieneTienda)
+    {
+        $this->tieneTienda = $tieneTienda;
+
+        return $this;
+    }
+
+    /**
+     * Get tieneTienda
+     *
+     * @return boolean 
+     */
+    public function getTieneTienda()
+    {
+        return $this->tieneTienda;
+    }
+
+    /**
+     * Set tieneBar
+     *
+     * @param boolean $tieneBar
+     * @return Club
+     */
+    public function setTieneBar($tieneBar)
+    {
+        $this->tieneBar = $tieneBar;
+
+        return $this;
+    }
+
+    /**
+     * Get tieneBar
+     *
+     * @return boolean 
+     */
+    public function getTieneBar()
+    {
+        return $this->tieneBar;
+    }
+
+    /**
+     * Set tieneVentamaterial
+     *
+     * @param boolean $tieneVentamaterial
+     * @return Club
+     */
+    public function setTieneVentamaterial($tieneVentamaterial)
+    {
+        $this->tieneVentamaterial = $tieneVentamaterial;
+
+        return $this;
+    }
+
+    /**
+     * Get tieneVentamaterial
+     *
+     * @return boolean 
+     */
+    public function getTieneVentamaterial()
+    {
+        return $this->tieneVentamaterial;
+    }
+
+    /**
+     * Set tieneBebidas
+     *
+     * @param boolean $tieneBebidas
+     * @return Club
+     */
+    public function setTieneBebidas($tieneBebidas)
+    {
+        $this->tieneBebidas = $tieneBebidas;
+
+        return $this;
+    }
+
+    /**
+     * Get tieneBebidas
+     *
+     * @return boolean 
+     */
+    public function getTieneBebidas()
+    {
+        return $this->tieneBebidas;
+    }
+
+    /**
+     * Set tieneAlquiler
+     *
+     * @param boolean $tieneAlquiler
+     * @return Club
+     */
+    public function setTieneAlquiler($tieneAlquiler)
+    {
+        $this->tieneAlquiler = $tieneAlquiler;
+
+        return $this;
+    }
+
+    /**
+     * Get tieneAlquiler
+     *
+     * @return boolean 
+     */
+    public function getTieneAlquiler()
+    {
+        return $this->tieneAlquiler;
+    }
+
+    /**
+     * Set tieneParking
+     *
+     * @param boolean $tieneParking
+     * @return Club
+     */
+    public function setTieneParking($tieneParking)
+    {
+        $this->tieneParking = $tieneParking;
+
+        return $this;
+    }
+
+    /**
+     * Get tieneParking
+     *
+     * @return boolean 
+     */
+    public function getTieneParking()
+    {
+        return $this->tieneParking;
+    }
+
+    /**
+     * Set tieneVestuarios
+     *
+     * @param boolean $tieneVestuarios
+     * @return Club
+     */
+    public function setTieneVestuarios($tieneVestuarios)
+    {
+        $this->tieneVestuarios = $tieneVestuarios;
+
+        return $this;
+    }
+
+    /**
+     * Get tieneVestuarios
+     *
+     * @return boolean 
+     */
+    public function getTieneVestuarios()
+    {
+        return $this->tieneVestuarios;
+    }
+
+    /**
+     * Set lunesHoraIniM
+     *
+     * @param \DateTime $lunesHoraIniM
+     * @return Club
+     */
+    public function setLunesHoraIniM($lunesHoraIniM)
+    {
+        $this->lunesHoraIniM = $lunesHoraIniM;
+
+        return $this;
+    }
+
+    /**
+     * Get lunesHoraIniM
+     *
+     * @return \DateTime 
+     */
+    public function getLunesHoraIniM()
+    {
+        return $this->lunesHoraIniM;
+    }
+
+    /**
+     * Set lunesHoraFinM
+     *
+     * @param \DateTime $lunesHoraFinM
+     * @return Club
+     */
+    public function setLunesHoraFinM($lunesHoraFinM)
+    {
+        $this->lunesHoraFinM = $lunesHoraFinM;
+
+        return $this;
+    }
+
+    /**
+     * Get lunesHoraFinM
+     *
+     * @return \DateTime 
+     */
+    public function getLunesHoraFinM()
+    {
+        return $this->lunesHoraFinM;
+    }
+
+    /**
+     * Set lunesHoraIniT
+     *
+     * @param \DateTime $lunesHoraIniT
+     * @return Club
+     */
+    public function setLunesHoraIniT($lunesHoraIniT)
+    {
+        $this->lunesHoraIniT = $lunesHoraIniT;
+
+        return $this;
+    }
+
+    /**
+     * Get lunesHoraIniT
+     *
+     * @return \DateTime 
+     */
+    public function getLunesHoraIniT()
+    {
+        return $this->lunesHoraIniT;
+    }
+
+    /**
+     * Set lunesHoraFinT
+     *
+     * @param \DateTime $lunesHoraFinT
+     * @return Club
+     */
+    public function setLunesHoraFinT($lunesHoraFinT)
+    {
+        $this->lunesHoraFinT = $lunesHoraFinT;
+
+        return $this;
+    }
+
+    /**
+     * Get lunesHoraFinT
+     *
+     * @return \DateTime 
+     */
+    public function getLunesHoraFinT()
+    {
+        return $this->lunesHoraFinT;
+    }
+
+    /**
+     * Set martesHoraIniM
+     *
+     * @param \DateTime $martesHoraIniM
+     * @return Club
+     */
+    public function setMartesHoraIniM($martesHoraIniM)
+    {
+        $this->martesHoraIniM = $martesHoraIniM;
+
+        return $this;
+    }
+
+    /**
+     * Get martesHoraIniM
+     *
+     * @return \DateTime 
+     */
+    public function getMartesHoraIniM()
+    {
+        return $this->martesHoraIniM;
+    }
+
+    /**
+     * Set martesHoraFinM
+     *
+     * @param \DateTime $martesHoraFinM
+     * @return Club
+     */
+    public function setMartesHoraFinM($martesHoraFinM)
+    {
+        $this->martesHoraFinM = $martesHoraFinM;
+
+        return $this;
+    }
+
+    /**
+     * Get martesHoraFinM
+     *
+     * @return \DateTime 
+     */
+    public function getMartesHoraFinM()
+    {
+        return $this->martesHoraFinM;
+    }
+
+    /**
+     * Set martesHoraIniT
+     *
+     * @param \DateTime $martesHoraIniT
+     * @return Club
+     */
+    public function setMartesHoraIniT($martesHoraIniT)
+    {
+        $this->martesHoraIniT = $martesHoraIniT;
+
+        return $this;
+    }
+
+    /**
+     * Get martesHoraIniT
+     *
+     * @return \DateTime 
+     */
+    public function getMartesHoraIniT()
+    {
+        return $this->martesHoraIniT;
+    }
+
+    /**
+     * Set martesHoraFinT
+     *
+     * @param \DateTime $martesHoraFinT
+     * @return Club
+     */
+    public function setMartesHoraFinT($martesHoraFinT)
+    {
+        $this->martesHoraFinT = $martesHoraFinT;
+
+        return $this;
+    }
+
+    /**
+     * Get martesHoraFinT
+     *
+     * @return \DateTime 
+     */
+    public function getMartesHoraFinT()
+    {
+        return $this->martesHoraFinT;
+    }
+
+    /**
+     * Set miercolesHoraIniM
+     *
+     * @param \DateTime $miercolesHoraIniM
+     * @return Club
+     */
+    public function setMiercolesHoraIniM($miercolesHoraIniM)
+    {
+        $this->miercolesHoraIniM = $miercolesHoraIniM;
+
+        return $this;
+    }
+
+    /**
+     * Get miercolesHoraIniM
+     *
+     * @return \DateTime 
+     */
+    public function getMiercolesHoraIniM()
+    {
+        return $this->miercolesHoraIniM;
+    }
+
+    /**
+     * Set miercolesHoraFinM
+     *
+     * @param \DateTime $miercolesHoraFinM
+     * @return Club
+     */
+    public function setMiercolesHoraFinM($miercolesHoraFinM)
+    {
+        $this->miercolesHoraFinM = $miercolesHoraFinM;
+
+        return $this;
+    }
+
+    /**
+     * Get miercolesHoraFinM
+     *
+     * @return \DateTime 
+     */
+    public function getMiercolesHoraFinM()
+    {
+        return $this->miercolesHoraFinM;
+    }
+
+    /**
+     * Set miercolesHoraIniT
+     *
+     * @param \DateTime $miercolesHoraIniT
+     * @return Club
+     */
+    public function setMiercolesHoraIniT($miercolesHoraIniT)
+    {
+        $this->miercolesHoraIniT = $miercolesHoraIniT;
+
+        return $this;
+    }
+
+    /**
+     * Get miercolesHoraIniT
+     *
+     * @return \DateTime 
+     */
+    public function getMiercolesHoraIniT()
+    {
+        return $this->miercolesHoraIniT;
+    }
+
+    /**
+     * Set miercolesHoraFinT
+     *
+     * @param \DateTime $miercolesHoraFinT
+     * @return Club
+     */
+    public function setMiercolesHoraFinT($miercolesHoraFinT)
+    {
+        $this->miercolesHoraFinT = $miercolesHoraFinT;
+
+        return $this;
+    }
+
+    /**
+     * Get miercolesHoraFinT
+     *
+     * @return \DateTime 
+     */
+    public function getMiercolesHoraFinT()
+    {
+        return $this->miercolesHoraFinT;
+    }
+
+    /**
+     * Set juevesHoraIniM
+     *
+     * @param \DateTime $juevesHoraIniM
+     * @return Club
+     */
+    public function setJuevesHoraIniM($juevesHoraIniM)
+    {
+        $this->juevesHoraIniM = $juevesHoraIniM;
+
+        return $this;
+    }
+
+    /**
+     * Get juevesHoraIniM
+     *
+     * @return \DateTime 
+     */
+    public function getJuevesHoraIniM()
+    {
+        return $this->juevesHoraIniM;
+    }
+
+    /**
+     * Set juevesHoraFinM
+     *
+     * @param \DateTime $juevesHoraFinM
+     * @return Club
+     */
+    public function setJuevesHoraFinM($juevesHoraFinM)
+    {
+        $this->juevesHoraFinM = $juevesHoraFinM;
+
+        return $this;
+    }
+
+    /**
+     * Get juevesHoraFinM
+     *
+     * @return \DateTime 
+     */
+    public function getJuevesHoraFinM()
+    {
+        return $this->juevesHoraFinM;
+    }
+
+    /**
+     * Set juevesHoraIniT
+     *
+     * @param \DateTime $juevesHoraIniT
+     * @return Club
+     */
+    public function setJuevesHoraIniT($juevesHoraIniT)
+    {
+        $this->juevesHoraIniT = $juevesHoraIniT;
+
+        return $this;
+    }
+
+    /**
+     * Get juevesHoraIniT
+     *
+     * @return \DateTime 
+     */
+    public function getJuevesHoraIniT()
+    {
+        return $this->juevesHoraIniT;
+    }
+
+    /**
+     * Set juevesHoraFinT
+     *
+     * @param \DateTime $juevesHoraFinT
+     * @return Club
+     */
+    public function setJuevesHoraFinT($juevesHoraFinT)
+    {
+        $this->juevesHoraFinT = $juevesHoraFinT;
+
+        return $this;
+    }
+
+    /**
+     * Get juevesHoraFinT
+     *
+     * @return \DateTime 
+     */
+    public function getJuevesHoraFinT()
+    {
+        return $this->juevesHoraFinT;
+    }
+
+    /**
+     * Set viernesHoraIniM
+     *
+     * @param \DateTime $viernesHoraIniM
+     * @return Club
+     */
+    public function setViernesHoraIniM($viernesHoraIniM)
+    {
+        $this->viernesHoraIniM = $viernesHoraIniM;
+
+        return $this;
+    }
+
+    /**
+     * Get viernesHoraIniM
+     *
+     * @return \DateTime 
+     */
+    public function getViernesHoraIniM()
+    {
+        return $this->viernesHoraIniM;
+    }
+
+    /**
+     * Set viernesHoraFinM
+     *
+     * @param \DateTime $viernesHoraFinM
+     * @return Club
+     */
+    public function setViernesHoraFinM($viernesHoraFinM)
+    {
+        $this->viernesHoraFinM = $viernesHoraFinM;
+
+        return $this;
+    }
+
+    /**
+     * Get viernesHoraFinM
+     *
+     * @return \DateTime 
+     */
+    public function getViernesHoraFinM()
+    {
+        return $this->viernesHoraFinM;
+    }
+
+    /**
+     * Set viernesHoraIniT
+     *
+     * @param \DateTime $viernesHoraIniT
+     * @return Club
+     */
+    public function setViernesHoraIniT($viernesHoraIniT)
+    {
+        $this->viernesHoraIniT = $viernesHoraIniT;
+
+        return $this;
+    }
+
+    /**
+     * Get viernesHoraIniT
+     *
+     * @return \DateTime 
+     */
+    public function getViernesHoraIniT()
+    {
+        return $this->viernesHoraIniT;
+    }
+
+    /**
+     * Set viernesHoraFinT
+     *
+     * @param \DateTime $viernesHoraFinT
+     * @return Club
+     */
+    public function setViernesHoraFinT($viernesHoraFinT)
+    {
+        $this->viernesHoraFinT = $viernesHoraFinT;
+
+        return $this;
+    }
+
+    /**
+     * Get viernesHoraFinT
+     *
+     * @return \DateTime 
+     */
+    public function getViernesHoraFinT()
+    {
+        return $this->viernesHoraFinT;
+    }
+
+    /**
+     * Set sabadoHoraIniM
+     *
+     * @param \DateTime $sabadoHoraIniM
+     * @return Club
+     */
+    public function setSabadoHoraIniM($sabadoHoraIniM)
+    {
+        $this->sabadoHoraIniM = $sabadoHoraIniM;
+
+        return $this;
+    }
+
+    /**
+     * Get sabadoHoraIniM
+     *
+     * @return \DateTime 
+     */
+    public function getSabadoHoraIniM()
+    {
+        return $this->sabadoHoraIniM;
+    }
+
+    /**
+     * Set sabadoHoraFinM
+     *
+     * @param \DateTime $sabadoHoraFinM
+     * @return Club
+     */
+    public function setSabadoHoraFinM($sabadoHoraFinM)
+    {
+        $this->sabadoHoraFinM = $sabadoHoraFinM;
+
+        return $this;
+    }
+
+    /**
+     * Get sabadoHoraFinM
+     *
+     * @return \DateTime 
+     */
+    public function getSabadoHoraFinM()
+    {
+        return $this->sabadoHoraFinM;
+    }
+
+    /**
+     * Set sabadoHoraIniT
+     *
+     * @param \DateTime $sabadoHoraIniT
+     * @return Club
+     */
+    public function setSabadoHoraIniT($sabadoHoraIniT)
+    {
+        $this->sabadoHoraIniT = $sabadoHoraIniT;
+
+        return $this;
+    }
+
+    /**
+     * Get sabadoHoraIniT
+     *
+     * @return \DateTime 
+     */
+    public function getSabadoHoraIniT()
+    {
+        return $this->sabadoHoraIniT;
+    }
+
+    /**
+     * Set sabadoHoraFinT
+     *
+     * @param \DateTime $sabadoHoraFinT
+     * @return Club
+     */
+    public function setSabadoHoraFinT($sabadoHoraFinT)
+    {
+        $this->sabadoHoraFinT = $sabadoHoraFinT;
+
+        return $this;
+    }
+
+    /**
+     * Get sabadoHoraFinT
+     *
+     * @return \DateTime 
+     */
+    public function getSabadoHoraFinT()
+    {
+        return $this->sabadoHoraFinT;
+    }
+
+    /**
+     * Set domingoHoraIniM
+     *
+     * @param \DateTime $domingoHoraIniM
+     * @return Club
+     */
+    public function setDomingoHoraIniM($domingoHoraIniM)
+    {
+        $this->domingoHoraIniM = $domingoHoraIniM;
+
+        return $this;
+    }
+
+    /**
+     * Get domingoHoraIniM
+     *
+     * @return \DateTime 
+     */
+    public function getDomingoHoraIniM()
+    {
+        return $this->domingoHoraIniM;
+    }
+
+    /**
+     * Set domingoHoraFinM
+     *
+     * @param \DateTime $domingoHoraFinM
+     * @return Club
+     */
+    public function setDomingoHoraFinM($domingoHoraFinM)
+    {
+        $this->domingoHoraFinM = $domingoHoraFinM;
+
+        return $this;
+    }
+
+    /**
+     * Get domingoHoraFinM
+     *
+     * @return \DateTime 
+     */
+    public function getDomingoHoraFinM()
+    {
+        return $this->domingoHoraFinM;
+    }
+
+    /**
+     * Set domingoHoraIniT
+     *
+     * @param \DateTime $domingoHoraIniT
+     * @return Club
+     */
+    public function setDomingoHoraIniT($domingoHoraIniT)
+    {
+        $this->domingoHoraIniT = $domingoHoraIniT;
+
+        return $this;
+    }
+
+    /**
+     * Get domingoHoraIniT
+     *
+     * @return \DateTime 
+     */
+    public function getDomingoHoraIniT()
+    {
+        return $this->domingoHoraIniT;
+    }
+
+    /**
+     * Set domingoHoraFinT
+     *
+     * @param \DateTime $domingoHoraFinT
+     * @return Club
+     */
+    public function setDomingoHoraFinT($domingoHoraFinT)
+    {
+        $this->domingoHoraFinT = $domingoHoraFinT;
+
+        return $this;
+    }
+
+    /**
+     * Get domingoHoraFinT
+     *
+     * @return \DateTime 
+     */
+    public function getDomingoHoraFinT()
+    {
+        return $this->domingoHoraFinT;
+    }
+
+    /**
+     * Set location
+     *
+     * @param \Padel\AmigoBundle\Entity\Location $location
+     * @return Club
+     */
+    public function setLocation(\Padel\AmigoBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \Padel\AmigoBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+}

@@ -1,0 +1,12 @@
+services : 
+    sonata.admin.user : 
+        class :  Padel\AmigoBundle\Admin\UserAdmin 
+        tags : 
+            -  {  name :  sonata.admin ,  manager_type :  orm ,  group :  "Administrador" ,  label :  "Usuarios"  } 
+        arguments : 
+            -  ~ 
+            -  Padel\AmigoBundle\Entity\User 
+            -  ~ 
+        calls : 
+#            - [ setTemplate, [layout, PadelAmigoBundle:Admin:admin.html.twig]]
+            - [ setTranslationDomain ,  [ PadelAmigoBundle ]]

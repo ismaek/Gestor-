@@ -1,0 +1,7 @@
+parameters:
+#    padel_amigo.example.class: Padel\AmigoBundle\Example
+
+services:
+#    padel_amigo.example:
+#        class: %padel_amigo.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
