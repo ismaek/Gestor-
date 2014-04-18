@@ -1,3 +1,11 @@
 padel_amigo_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: PadelAmigoBundle:Default:index }
+    
+padel_amigo_user:
+    path:   /user
+    defaults: { _controller: PadelAmigoBundle:Default:user }
+    
+padel_amigo_club:
+    pattern:  /club
+    defaults: { _controller: PadelAmigoBundle:Default:club }

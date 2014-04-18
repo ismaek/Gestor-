@@ -1,0 +1,221 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% set _preview      = block('preview') %}
+{% set _form         = block('form') %}
+{% set _show         = block('show') %}
+{% set _list_table   = block('list_table') %}
+{% set _list_filters = block('list_filters') %}
+{% set _side_menu    = block('side_menu') %}
+{% set _content      = block('content') %}
+{% set _title        = block('title') %}
+{% set _breadcrumb   = block('breadcrumb') %}
+{% set _actions      = block('actions') %}
+<!DOCTYPE html>
+<html {% block html_attributes %}class="no-js"{% endblock %}>
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% block stylesheets %}
+            <!-- jQuery code -->
+            <link href="{{ asset('bundles/padelamigo/css/style.default.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/padelamigo/css/jquery.datatables.css') }}" rel="stylesheet">
+
+        {% endblock %}
+
+        {% block javascripts %}
+            <script>
+                window.SONATA_CONFIG = {
+                    CONFIRM_EXIT: {% if admin_pool is defined and admin_pool.getOption('confirm_exit') %}true{% else %}false{% endif %},
+                    USE_SELECT2: {% if admin_pool is defined and admin_pool.getOption('use_select2') %}true{% else %}false{% endif %}
+                };
+                window.SONATA_TRANSLATIONS = {
+                    CONFIRM_EXIT:  '{{ 'confirm_exit'|trans({}, 'SonataAdminBundle')|escape('js') }}'
+               };
+            </script>
+        {% endblock %}
+
+        <title>
+            {{ 'Admin'|trans({}, 'SonataAdminBundle') }}
+
+            {% if _title is not empty %}
+                {{ _title|raw }}
+            {% else %}
+                {% if action is defined %}
+                    -
+                    {% for menu in admin.breadcrumbs(action) %}
+                        {% if not loop.first  %}
+                            &gt;
+                        {% endif %}
+                        {{ menu.label }}
+                    {% endfor %}
+                {% endif %}
+            {% endif%}
+        </title>
+    </head>
+    <body {% block body_attributes %}class="sonata-bc {% if _side_menu is empty %}sonata-ba-no-side-menu{% endif %}"{% endblock %}>
+        {% block initialize_value %}
+            <div id="preloader">
+                <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+            </div> 
+        {% endblock %}
+        
+        <section>
+            <div class="leftpanel"> 
+                <div class="logopanel">
+                    <h1>
+                        {% block logo %}
+                            <a href="{{ url('sonata_admin_dashboard') }}" class="brand">
+                                <img src="{{ asset('bundles/padelamigo/images/logo-padelamigo.png') }}"  alt="Padel Amigo">
+{#                                    {{ admin_pool.title }}#}
+                            </a>
+                        {% endblock %}
+                    </h1>
+                </div>
+                
+                <div class="leftpanelinner"> 
+
+                    <!-- This is only visible to small devices -->
+                    <div class="visible-xs hidden-sm hidden-md hidden-lg">   
+                        <div class="media userlogged">
+                            <img alt="" src="{{ asset('bundles/padelamigo/images/photos/loggeduser.png') }}" class="media-object">
+                            <div class="media-body">
+                                <h4>John Doe</h4>
+                                <span>"Life is so..."</span>
+                            </div>
+                        </div>
+
+                        <h5 class="sidebartitle actitle">Account</h5>
+                        <ul class="nav nav-pills nav-stacked nav-bracket mb30">
+                          <li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                          <li><a href=""><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>
+                          <li><a href=""><i class="fa fa-question-circle"></i> <span>Help</span></a></li>
+                          <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                        </ul>
+                    </div>   
+
+                    {% block menuadmin %}
+                        {% include 'PadelAmigoBundle:Menu:menuClub.html.twig' %}
+                    {% endblock %}
+                    
+                    
+                </div>
+            </div><!--end leftpanel -->
+                    
+
+                    
+                    
+            <div class="mainpanel"> 
+                
+                
+                <div class="headerbar">
+      
+                    <a class="menutoggle"><i class="fa fa-bars"></i></a>
+                    
+                   
+{#                  {% block sonata_top_bar_search %}#}
+{#                      {% if app.security.token and is_granted('ROLE_SONATA_ADMIN') %}#}
+                            <form class="searchform" action="index.html" method="post">
+                                <input type="text" name="q" value="{{ app.request.get('q') }}"  placeholder="Buscar..." class="form-control" >
+                            </form>
+{#                      {% endif %}#}
+{#                  {% endblock %}#}
+                
+                    {% include 'PadelAmigoBundle:Club:header.html.twig' %}
+                    
+                </div> <!-- end headerbar -->  
+                    
+                <div class="pageheader">
+                    <h2><i class="fa fa-home"></i> Club de prueba </h2>
+
+                    {% block sonata_breadcrumb %}
+                        {% if _breadcrumb is not empty or action is defined %}
+                            <div class="breadcrumb-wrapper">
+                                <span class="label">Estas aqui:</span>
+                                    <ol class="breadcrumb">
+                                    {% if _breadcrumb is empty %}
+                                        {% if action is defined %}
+                                            {% for menu in admin.breadcrumbs(action) %}
+                                                {% if not loop.last  %}
+                                                    <li>
+                                                        {% if menu.uri is not empty %}
+                                                            <a href="{{ menu.uri }}">{{ menu.label }}</a>
+                                                        {% else %}
+                                                            {{ menu.label }}
+                                                        {% endif %}
+
+                                                    </li>
+                                                {% else %}
+                                                    <li class="active">{{ menu.label }}</li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% else %}
+                                        {{ _breadcrumb|raw }}
+                                    {% endif %}
+                                </ol>
+                            </div>
+                        {% endif %}
+                    {% endblock sonata_breadcrumb %}
+
+
+                </div><!-- end pageheader -->
+                    
+
+                    
+                <div class="contentpanel">    
+                {% include 'PadelAmigoBundle:Admin:content.html.twig' %}
+                </div>
+
+                
+            </div><!--end mainpanel -->
+
+            
+            
+            
+            
+            <div class="rightpanel"> 
+            
+            </div>
+        </section>
+
+                         
+    {% block javascriptend %}
+            <script src="{{ asset('bundles/padelamigo/js/jquery-1.10.2.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/jquery-migrate-1.2.1.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/jquery-ui-1.10.3.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/modernizr.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/jquery.sparkline.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/toggles.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/retina.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/jquery.cookies.js') }}"></script>
+
+            <script src="{{ asset('bundles/padelamigo/js/flot/flot.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/flot/flot.resize.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/morris.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/raphael-2.1.0.min.js') }}"></script>
+
+            <script src="{{ asset('bundles/padelamigo/js/jquery.datatables.min.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/chosen.jquery.min.js') }}"></script>
+
+            <script src="{{ asset('bundles/padelamigo/js/custom.js') }}"></script>
+            <script src="{{ asset('bundles/padelamigo/js/dashboard.js') }}"></script>    
+        
+    {% endblock %}
+        
+
+    </body>
+</html>
+
+
+

@@ -9,6 +9,8 @@ use  Sonata\AdminBundle\Form\FormMapper ;
 use  Sonata\AdminBundle\Show\ShowMapper ;
 
 class UserAdmin extends Admin{
+    
+    
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -22,6 +24,7 @@ class UserAdmin extends Admin{
             ->add('nivelChecked',   'checkbox', array('required' => false, 'label' => 'Nivel Comprobado'))   
             ->add('lockEmail',      'checkbox', array('required' => false, 'label' => 'Permite Mailing'))
             ->add('type',           'text',     array('required' => false, 'label' => 'Tipo'))
+            ->add('location')
 //            ->add('image','file',array('label' => 'Imagen'))
             ->add('email',          'text',     array('required' => false, 'label' => 'Email'))
             ->add('enabled',        'checkbox', array('required' => false, 'label' => 'Habilitado'))
@@ -34,10 +37,10 @@ class UserAdmin extends Admin{
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('username')
-            ->add('dni')
-            ->add('name')
-            ->add('surname')
+//            ->add('username')
+//            ->add('dni')
+//            ->add('name')
+//            ->add('surname')
         ;
     }
 
@@ -45,12 +48,20 @@ class UserAdmin extends Admin{
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('username')
-            ->add('dni')
-            ->add('name')
-            ->add('surname')
-            ->add('mobilePhone')
-            ->add('email')
+            ->addIdentifier('username', null, array('label' => 'Usuario'))
+            ->add('dni', null, array('label' => 'DNI'))
+            ->add('name', null, array('label' => 'Nombre'))
+            ->add('surname', null, array('label' => 'Apellidos'))
+            ->add('mobilePhone', null, array('label' => 'Movil'))
+            ->add('email', null, array('label' => 'email'))
+            ->add('enabled', 'boolean', array('label' => 'Habilitado'))
+//            ->add('_action', 'actions', array(
+//            'actions' => array(
+//                'show' => array(),
+//                'edit' => array(),
+//                'delete' => array(),
+//            )
+//        ))
         ;
     }
 

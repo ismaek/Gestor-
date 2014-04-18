@@ -1,1 +1,97 @@
-Hello {{ name }}!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+  <title>Padel Amigo</title>
+
+  <link href="{{ asset ('bundles/padelamigo/css/style.default.css') }}" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="{{ asset('bundles/padelamigo/js/html5shiv.js') }}"></script>
+  <script src="{{ asset('bundles/padelamigo/js/respond.min.js') }}"></script>
+  <![endif]-->
+</head>
+
+<body class="signin">
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+
+<section>
+  
+    <div class="signinpanel">
+        
+        <div class="row">
+            
+            <div class="col-md-7">
+                
+                <div class="signin-info">
+                    <div class="logopanel">
+                        <h1><img src="{{ asset ('bundles/padelamigo/images/logo-index.png') }}" width="200px"></h1>
+                    </div><!-- logopanel -->
+                
+                    <div class="mb20"></div>
+                
+                    <h5><strong></strong></h5>
+                    <ul>
+                        <li><i class="fa fa-arrow-circle-o-right mr5"></i> Reserva tus pistas de padel online</li>
+                        <li><i class="fa fa-arrow-circle-o-right mr5"></i> De una forma facil y comoda</li>
+                        <li><i class="fa fa-arrow-circle-o-right mr5"></i> Organiza partidos con tus amigos</li>
+                        <li><i class="fa fa-arrow-circle-o-right mr5"></i> Organiza partidos en tu club</li>
+                        <li><i class="fa fa-arrow-circle-o-right mr5"></i> y muncho más ...</li>
+                    </ul>
+                    <div class="mb20"></div>
+                    <strong>¿No eres miembro? <a href="{{ path('fos_user_register') }}">Registrarse</a></strong>
+                </div><!-- signin0-info -->
+            
+            </div><!-- col-sm-7 -->
+            
+            <div class="col-md-5">
+                
+                <form method="post" action="index.html">
+                    <h4 class="nomargin">Iniciar Sesión </h4>
+                    <p class="mt5 mb20">Accede a tu cuenta</p>
+                
+                    <input type="text" class="form-control uname" placeholder="Username" />
+                    <input type="password" class="form-control pword" placeholder="Password" />
+                    <a href=""><small>¿Has olvidado tu password?</small></a>
+                    <button class="btn btn-success btn-block">Iniciar Sesión</button>
+                    
+                </form>
+            </div><!-- col-sm-5 -->
+            
+        </div><!-- row -->
+        
+        <div class="signup-footer">
+            <div class="pull-left">
+                &copy; 2014. Todos los derechos reservados padelamigo.es
+            </div>
+            <div class="pull-right">
+                Contacta con nosotros <a href="mailto:padelamigo@gmail.com" target="_blank">info@padelamigo.com</a>
+            </div>
+        </div>
+        
+    </div><!-- signin -->
+  
+</section>
+
+
+<script src="{{ asset('bundles/padelamigo/js/jquery-1.10.2.min.js') }}"></script>
+<script src="{{ asset('bundles/padelamigo/js/jquery-migrate-1.2.1.min.js') }}"></script>
+<script src="{{ asset('bundles/padelamigo/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/padelamigo/js/modernizr.min.js') }}"></script>
+<script src="{{ asset('bundles/padelamigo/js/retina.min.js') }}"></script>
+
+<script src="{{ asset('bundles/padelamigo/js/custom.js') }}"></script>
+
+</body>
+</html>
+
